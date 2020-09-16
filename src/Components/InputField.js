@@ -49,6 +49,11 @@ const InputField = forwardRef(
                                     setError('Please Enter a valid email address')
                                 }
                             break;
+                        case "positive":
+                            if (value < 0) {
+                                setError("lucky number cannot be negative 😀")
+                            }
+                            break;
                         default:
                             break;
                     }

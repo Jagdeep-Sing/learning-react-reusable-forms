@@ -12,6 +12,7 @@ function App() {
       React.createRef(),
       React.createRef(),
       React.createRef(),
+      React.createRef(),
       React.createRef()
     ]
   );
@@ -62,6 +63,15 @@ function App() {
 
         <InputField
           ref={inputRefs.current[2]}
+          name ="luckyNumber"
+          label = "Your lucky number:"
+          type="number"
+          onChange = {handleChange}
+          validation={"required|positive"}
+        />
+
+        <InputField
+          ref={inputRefs.current[3]}
           name ="password"
           label = "Password:"
           onChange = {handleChange}
@@ -70,7 +80,7 @@ function App() {
         />
 
         <SelectBox
-        ref={inputRefs.current[3]}
+        ref={inputRefs.current[4]}
         name="age"
         label="Age"
         onChange = {handleChange}
@@ -78,7 +88,7 @@ function App() {
         />
 
         <RadioButtons 
-        ref={inputRefs.current[4]}
+        ref={inputRefs.current[5]}
         name = "gender"
         label = "Gender"
         onChange = {handleChange}
@@ -86,7 +96,7 @@ function App() {
         />
 
         <Calender
-          ref = {inputRefs.current[5]}
+          ref = {inputRefs.current[6]}
           name="dob"
           onChange = {handleChange}
           validation = {"required"}
