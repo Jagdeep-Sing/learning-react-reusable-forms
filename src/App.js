@@ -20,7 +20,6 @@ function App() {
   const handleChange = (name, value) => {
     setData(prev => ({...prev, [name]: value}))
   }
-console.log(data)
   const submitForm = (e) => {
     e.preventDefault();
     let isValid = true;
