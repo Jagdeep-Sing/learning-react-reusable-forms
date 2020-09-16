@@ -50,7 +50,9 @@ const RadioButtons = forwardRef(
                     <label>{props.label}</label>
                 )}
                 </FormLabel>
-                <RadioGroup row aria-label="gender" name="gender1" value={value} onChange={handleChange}>
+                <RadioGroup row aria-label="gender" name="gender1"
+                    value={props.value ? props.value : value} 
+                    onChange={(event) => handleChange(event)}>
                     <FormControlLabel value="female" control={<Radio />} label="Female" />
                     <FormControlLabel value="male" control={<Radio />} label="Male" />
                     <FormControlLabel value="other" control={<Radio />} label="Other" />

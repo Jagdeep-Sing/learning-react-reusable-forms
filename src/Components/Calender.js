@@ -1,11 +1,8 @@
 import React, {forwardRef, useImperativeHandle} from "react";
 import { makeStyles } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
+import TextField from '@material-ui/core/TextField';
 
-const SelectBox = forwardRef(
+const Calender = forwardRef(
     (props, ref) => {
         const [value, setValue] = React.useState("");
         const [error, setError] = React.useState("");
@@ -27,7 +24,7 @@ const SelectBox = forwardRef(
 
                     if (current === "required") {
                         if (!value) {
-                            setError("Please select the age")
+                            setError("Please select the DOB")
                             return false;
                         }
                     }
@@ -45,26 +42,21 @@ const SelectBox = forwardRef(
         return(
             <div className="input-wrapper">
                 
-            <FormControl className={classes.formControl}>
-                <InputLabel id="demo-simple-select-label">
-                {props.label && (
-                    <label>{props.label}</label>
-                )}
-                </InputLabel>
-                <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    placeholder={props.placeholder}
-                    name={props.name}
-                    onChange={(event) => handleChange(event)}
-                    type={props.type}
-                    value={props.value ? props.value : value}
-                >
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
-                </Select>
-            </FormControl>
+                <form className={classes.container} noValidate>
+                    <TextField
+                        id="date"
+                        name = {props.name}
+                        label="Birthday"
+                        type="date"
+                        defaultValue="2017-05-24"
+                        className={classes.textField}
+                        value={props.value ? props.value : value} 
+                        onChange={(event) => handleChange(event)}
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                    />
+                </form>
             {error && (
                 <p className="error">
                     {error}
@@ -75,7 +67,7 @@ const SelectBox = forwardRef(
     }
 )
 
-SelectBox.defaultProps = {
+Calender.defaultProps = {
     placeholder: "",
     name: "",
     type: "",
@@ -84,13 +76,14 @@ SelectBox.defaultProps = {
 }
 
 const useStyles = makeStyles((theme) => ({
-    formControl: {
-        margin: theme.spacing(1),
-        minWidth: 120,
+    container: {
+        display: 'flex',
+        flexWrap: 'wrap',
     },
-    selectEmpty: {
-        marginTop: theme.spacing(2),
+    textField: {
+        
+        width: 350,
     },
 }));
 
-export default SelectBox;
+export default Calender;

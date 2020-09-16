@@ -3,9 +3,11 @@ import './App.css';
 import InputField from './Components/InputField';
 import SelectBox from './Components/SelectBox';
 import RadioButtons from './Components/RadioButtons';
+import Calender from './Components/Calender'
 function App() {
   const inputRefs = React.useRef(
     [
+      React.createRef(),
       React.createRef(),
       React.createRef(),
       React.createRef(),
@@ -61,6 +63,7 @@ console.log(data)
         <SelectBox
         ref={inputRefs.current[2]}
         name="age"
+        label="Age"
         onChange = {handleChange}
         validation={"required"}
         />
@@ -71,6 +74,13 @@ console.log(data)
         label = "Gender"
         onChange = {handleChange}
         validation = {"required"}
+        />
+
+        <Calender
+          ref = {inputRefs.current[4]}
+          name="dob"
+          onChange = {handleChange}
+          validation = {"required"}
         />
         <button type="submit">SignUp</button>
       </form>
