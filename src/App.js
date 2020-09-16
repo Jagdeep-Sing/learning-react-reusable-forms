@@ -5,9 +5,11 @@ import SelectBox from './Components/SelectBox';
 import RadioButtons from './Components/RadioButtons';
 import Calender from './Components/Calender';
 import TextArea from './Components/TextArea';
+import Checkbox from './Components/checkbox'
 function App() {
   const inputRefs = React.useRef(
     [
+      React.createRef(),
       React.createRef(),
       React.createRef(),
       React.createRef(),
@@ -38,7 +40,7 @@ function App() {
       return false
     } else {
       alert (JSON.stringify(data))
-      setData("")
+      //setData("")
     }
   }
 
@@ -113,7 +115,15 @@ function App() {
           validation={"required"}
           multiline="true"
           variant="outlined"
-          rows="5"
+          rows="3"
+          />
+
+          <Checkbox
+          ref= {inputRefs.current[8]}
+          name="agreed"
+          label="Agree"
+          onChange = {handleChange}
+          validation={"required"}
           />
         <button type="submit">SignUp</button>
       </form>

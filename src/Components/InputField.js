@@ -42,16 +42,16 @@ const InputField = forwardRef(
                             }
                             break;
                         case "email":
-                            if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(value))
+                            if (!(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(value)))
                                 {
-                                    return (true)
-                                } else {
-                                    setError('Please Enter a valid email address')
+                                    setError('Please Enter a valid email address');
+                                    return false;                                
                                 }
                             break;
                         case "positive":
                             if (value < 0) {
                                 setError("lucky number cannot be negative 😀")
+                                return false; 
                             }
                             break;
                         default:
