@@ -6,6 +6,8 @@ import RadioButtons from './Components/RadioButtons';
 import Calender from './Components/Calender';
 import TextArea from './Components/TextArea';
 import Checkbox from './Components/checkbox'
+import ReactJson from 'react-json-view'
+
 function App() {
   const inputRefs = React.useRef(
     [
@@ -20,7 +22,7 @@ function App() {
       React.createRef()
     ]
   );
-  const [data, setData] = React.useState({});
+  let [data, setData] = React.useState({});
 
   const handleChange = (name, value) => {
     setData(prev => ({...prev, [name]: value}))
@@ -42,6 +44,10 @@ function App() {
       alert (JSON.stringify(data))
       //setData("")
     }
+  }
+
+  const resetForm = () => {
+    alert('Not able to reset')
   }
 
   return (
@@ -127,6 +133,10 @@ function App() {
           />
         <button type="submit">SignUp</button>
       </form>
+      <div className="form">
+      <ReactJson src={data} />
+      <button onClick={resetForm}>RESET</button>
+      </div>
     </div>
   );
 }
