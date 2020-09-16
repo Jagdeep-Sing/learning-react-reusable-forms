@@ -3,13 +3,49 @@ import React, {forwardRef, useImperativeHandle} from "react";
 const InputField = forwardRef(
     (props, ref) => {
         const [value, setValue] = React.useState("");
+        const [error, setError] = React.useState("");
     
         const handleChange = (event) => {
             setValue(event.target.value)
+            setError("")
             props.onChange(event.target.name, event.target.value)
         }
 
         const validate = () => {
+            // return true if is valid
+            // else return false
+            if (props.validation) {
+                const rules = props.validation.split("|");
+
+                for (let i = 0; i < rules.length; i++) {
+                    const current = rules[i];
+
+                    if (current === "required") {
+                        if (!value) {
+                            setError("This field cannot be empty")
+                            return false;
+                        }
+                    }
+
+                    const pair = current.split(":");
+                    switch(pair[0]) {
+                        case "min":
+                            if (value.length < pair[1]) {
+                                setError(`Must be ${pair[1]} characters long`)
+                                return false
+                            }
+                            break;
+                        case "max":
+                            if (value.length > pair[1]) {
+                                setError(`must not longer than ${pair[1]}`)
+                                return false
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
             return true;
         }
 
@@ -32,6 +68,11 @@ const InputField = forwardRef(
             value={props.value ? props.value : value}
             autoComplete={props.autoComplete}
             />
+            {error && (
+                <p className="error">
+                    {error}
+                </p>
+            )}
         </div>
         )
     }
@@ -40,9 +81,10 @@ const InputField = forwardRef(
 InputField.defaultProps = {
     placeholder: "",
     name: "",
-    type: "text",
+    type: "",
     value: "",
-    autoComplete: "off"
+    autoComplete: "off",
+    validation : ""
 }
 
 export default InputField;

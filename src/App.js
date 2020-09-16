@@ -21,17 +21,26 @@ function App() {
 
     for (let i = 0; i < inputRefs.current.length; i++) {
       const valid = inputRefs.current[i].current.validate();
-      console.log(valid)
+      if (!valid) {
+        isValid = false;
+      }
+    }
+
+    if (!isValid) {
+      return
     }
   }
   return (
     <div className="App">
-      <form onSubmit={submitForm}>
+      <form onSubmit={submitForm} className="form">
+        <h1>SIGN UP</h1>
         <InputField
           ref={inputRefs.current[0]}
           name ="username"
           label = "Username*:"
+          type="text"
           onChange = {handleChange}
+          validation={"required|min:6|max:12"}
         />
 
         <InputField
@@ -39,6 +48,8 @@ function App() {
           name ="password"
           label = "Password*:"
           onChange = {handleChange}
+          type="password"
+          validation={"required|min:8"}
         />
         <button type="submit">SignUp</button>
       </form>
