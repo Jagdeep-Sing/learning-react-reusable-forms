@@ -3,10 +3,12 @@ import './App.css';
 import InputField from './Components/InputField';
 import SelectBox from './Components/SelectBox';
 import RadioButtons from './Components/RadioButtons';
-import Calender from './Components/Calender'
+import Calender from './Components/Calender';
+import TextArea from './Components/TextArea';
 function App() {
   const inputRefs = React.useRef(
     [
+      React.createRef(),
       React.createRef(),
       React.createRef(),
       React.createRef(),
@@ -39,6 +41,7 @@ function App() {
       setData("")
     }
   }
+
   return (
     <div className="App">
       <form onSubmit={submitForm} className="form">
@@ -101,6 +104,17 @@ function App() {
           onChange = {handleChange}
           validation = {"required"}
         />
+
+        <TextArea
+          ref= {inputRefs.current[7]}
+          name="about"
+          label="Something about you"
+          onChange = {handleChange}
+          validation={"required"}
+          multiline="true"
+          variant="outlined"
+          rows="5"
+          />
         <button type="submit">SignUp</button>
       </form>
     </div>

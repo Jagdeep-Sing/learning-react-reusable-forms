@@ -43,7 +43,7 @@ const RadioButtons = forwardRef(
         })
         
         return(
-            <div className="input-wrapper">
+            <div >
             <FormControl component="fieldset">
                 <FormLabel component="legend">
                 {props.label && (
