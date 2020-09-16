@@ -1,10 +1,11 @@
 import React from 'react';
 import './App.css';
 import InputField from './Components/InputField'
-
+import SelectBox from './Components/SelectBox'
 function App() {
   const inputRefs = React.useRef(
     [
+      React.createRef(),
       React.createRef(),
       React.createRef()
     ]
@@ -14,7 +15,7 @@ function App() {
   const handleChange = (name, value) => {
     setData(prev => ({...prev, [name]: value}))
   }
-
+console.log(data)
   const submitForm = (e) => {
     e.preventDefault();
     let isValid = true;
@@ -30,6 +31,7 @@ function App() {
       return false
     } else {
       alert (JSON.stringify(data))
+      setData("")
     }
   }
   return (
@@ -52,6 +54,13 @@ function App() {
           onChange = {handleChange}
           type="password"
           validation={"required|min:8"}
+        />
+
+        <SelectBox
+        ref={inputRefs.current[2]}
+        name="age"
+        onChange = {handleChange}
+        validation={"required"}
         />
         <button type="submit">SignUp</button>
       </form>
