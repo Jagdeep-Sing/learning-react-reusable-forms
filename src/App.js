@@ -27,7 +27,9 @@ function App() {
     }
 
     if (!isValid) {
-      return
+      return false
+    } else {
+      alert (JSON.stringify(data))
     }
   }
   return (
