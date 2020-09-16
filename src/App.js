@@ -1,10 +1,12 @@
 import React from 'react';
 import './App.css';
-import InputField from './Components/InputField'
-import SelectBox from './Components/SelectBox'
+import InputField from './Components/InputField';
+import SelectBox from './Components/SelectBox';
+import RadioButtons from './Components/RadioButtons';
 function App() {
   const inputRefs = React.useRef(
     [
+      React.createRef(),
       React.createRef(),
       React.createRef(),
       React.createRef()
@@ -61,6 +63,14 @@ console.log(data)
         name="age"
         onChange = {handleChange}
         validation={"required"}
+        />
+
+        <RadioButtons 
+        ref={inputRefs.current[3]}
+        name = "gender"
+        label = "Gender"
+        onChange = {handleChange}
+        validation = {"required"}
         />
         <button type="submit">SignUp</button>
       </form>
