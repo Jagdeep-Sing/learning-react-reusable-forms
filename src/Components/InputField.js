@@ -41,6 +41,14 @@ const InputField = forwardRef(
                                 return false
                             }
                             break;
+                        case "email":
+                            if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(value))
+                                {
+                                    return (true)
+                                } else {
+                                    setError('Please Enter a valid email address')
+                                }
+                            break;
                         default:
                             break;
                     }

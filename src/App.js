@@ -11,6 +11,7 @@ function App() {
       React.createRef(),
       React.createRef(),
       React.createRef(),
+      React.createRef(),
       React.createRef()
     ]
   );
@@ -45,7 +46,7 @@ console.log(data)
         <InputField
           ref={inputRefs.current[0]}
           name ="username"
-          label = "Username*:"
+          label = "Username:"
           type="text"
           onChange = {handleChange}
           validation={"required|min:6|max:12"}
@@ -53,15 +54,24 @@ console.log(data)
 
         <InputField
           ref={inputRefs.current[1]}
+          name ="email"
+          label = "Email:"
+          type="text"
+          onChange = {handleChange}
+          validation={"required|email"}
+        />
+
+        <InputField
+          ref={inputRefs.current[2]}
           name ="password"
-          label = "Password*:"
+          label = "Password:"
           onChange = {handleChange}
           type="password"
           validation={"required|min:8"}
         />
 
         <SelectBox
-        ref={inputRefs.current[2]}
+        ref={inputRefs.current[3]}
         name="age"
         label="Age"
         onChange = {handleChange}
@@ -69,7 +79,7 @@ console.log(data)
         />
 
         <RadioButtons 
-        ref={inputRefs.current[3]}
+        ref={inputRefs.current[4]}
         name = "gender"
         label = "Gender"
         onChange = {handleChange}
@@ -77,7 +87,7 @@ console.log(data)
         />
 
         <Calender
-          ref = {inputRefs.current[4]}
+          ref = {inputRefs.current[5]}
           name="dob"
           onChange = {handleChange}
           validation = {"required"}
